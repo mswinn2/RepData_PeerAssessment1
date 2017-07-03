@@ -10,14 +10,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-##Load data and pre-process
+## Load data and pre-process
 ```{r}
 library(utils)
 d = read.table('./activity/activity.csv', sep = ",", header = T)
 d$date = as.Date(d$date)
 ```
 
-##Steps taken per day
+## Steps taken per day
 
 Produce a histogram of number of steps taken each day
 ```{r}
@@ -36,7 +36,7 @@ print(median(dailySteps$x, na.rm = T))
 ```
 
 
-##Daily activity pattern
+## Daily activity pattern
 
 Line plot of average steps taken per 5-minute inteval, averages across all days
 
@@ -47,7 +47,7 @@ plot(intervalAvgSteps$avgSteps, type = 'l', xlab = 'Inteval', ylab = 'Daily mean
 title('Daily mean steps by interval')
 ```
 
-##Impute missing variables
+## Impute missing variables
 If missing variables were sporadically distributed, the ideal approach would be to take the average of surrounding periods. However, the missing variables occur in large 'blocks' with entire days unrepresented. Therefore instead, take the daily average for that period, which has already been calculated.
 
 Number of missing variables:
@@ -79,7 +79,7 @@ box()
 We can see that the new distribution (blue) is higher than the old within the central range of 10k to 15k steps only. Outside this range, the two distibutions are identical. The reason for this is that in the initial distribution, several days are *entirely* unrepresented, therefore do not even appear on the 'old' histogram, as the daily totals are also missing for those days.
 
 
-##Examine differences between weekdays and weekends
+## Examine differences between weekdays and weekends
 
 Create a factor variable representing whether a date is a weekday or weekend
 ```{r}
